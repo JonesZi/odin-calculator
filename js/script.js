@@ -114,7 +114,7 @@ window.addEventListener("click", (e) => {
             calculateResult(calcStr);
         }
         if (isEmpty(calcStr)) {
-            alert("Enter operand before operator!")
+            return;
         } else {
         addOperator(e.target.textContent);
         }
