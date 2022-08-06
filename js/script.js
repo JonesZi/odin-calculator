@@ -83,7 +83,6 @@ function calculateResult(string) {
     const operator = array[1];
     const num1 = parseFloat(array[0]);
     const num2 = parseFloat(array[2]);
-    console.log(num1,num2,operator);
     result = operate(operator,num1,num2);
     allClear();
     if(!result) {
