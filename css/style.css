@@ -34,8 +34,7 @@ body {
 }
 
 p {
-    font-size: 60px;
-    font-weight: bold;
+    font-size: 30px;
 }
 
 button {
@@ -66,6 +65,7 @@ button {
     color: white;
 }
 
-.numbers {
+.numbers,
+.float {
     background-color: rgb(228, 228, 228);
 }
