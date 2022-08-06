@@ -66,6 +66,17 @@ function clear(string) {
     equation.textContent = calcStr;
 }
 
+function calculateResult(string) {
+    const array = string.split(" ");
+    const operator = array[1];
+    const num1 = parseFloat(array[0]);
+    const num2 = parseFloat(array[2]);
+    result = operate(operator,num1,num2);
+    allClear();
+    calcStr += result;
+    equation.textContent = calcStr; 
+}
+
 // Variables & EventListeners
 
 let calcStr = "";
@@ -82,5 +93,7 @@ window.addEventListener("click", (e) => {
         allClear(e.target.textContent);
     } else if (e.target.classList.contains("c")) {
         clear(calcStr);
+    } else if (e.target.classList.contains("equal")) {
+        calculateResult(calcStr);
     }
 });
