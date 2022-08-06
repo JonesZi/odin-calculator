@@ -43,10 +43,15 @@ function addFloat (string) {
     equation.textContent = calcStr;
 }
 
+function checkFloatFormat(string) {
+    if (string.slice(-1) === ".") {
+        calcStr = string.slice(0,-1)
+    }
+}
 
 function addOperator (string) {
-    if (calcStr.slice(-1) === ".") {
-        calcStr = calcStr.slice(0,-1)
+    if (calcStr.includes(" ")) {
+        calculateResult(calcStr);
     }
     calcStr += ` ${string} `;
     equation.textContent = calcStr;
@@ -66,8 +71,11 @@ function clear(string) {
     equation.textContent = calcStr;
 }
 
+//Calculate and display result
+
 function calculateResult(string) {
     const array = string.split(" ");
+    if (!array[2]) return;
     const operator = array[1];
     const num1 = parseFloat(array[0]);
     const num2 = parseFloat(array[2]);
@@ -86,6 +94,7 @@ window.addEventListener("click", (e) => {
     if (e.target.classList.contains("numbers")) {
         continueNumber(e.target.textContent);
     } else if (e.target.classList.contains("operators")) {
+        checkFloatFormat(calcStr);
         addOperator(e.target.textContent);
     } else if (e.target.classList.contains("float")) {
         addFloat(e.target.textContent);
@@ -94,6 +103,7 @@ window.addEventListener("click", (e) => {
     } else if (e.target.classList.contains("c")) {
         clear(calcStr);
     } else if (e.target.classList.contains("equal")) {
+        checkFloatFormat(calcStr);
         calculateResult(calcStr);
     }
 });
