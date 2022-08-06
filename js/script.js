@@ -54,9 +54,7 @@ function checkFloatFormat(string) {
 }
 
 function addOperator (string) {
-    if (calcStr.includes(" ")) {
-        calculateResult(calcStr);
-    }
+    if (hasOperators(calcStr)) return;
     calcStr += ` ${string} `;
     equation.textContent = calcStr;
 }
@@ -75,6 +73,15 @@ function clear(string) {
     equation.textContent = calcStr;
 }
 
+function isEmpty(string) {
+    return string === "" ? true : false;
+}
+
+function hasOperators(string) {
+    ops = ["+","-","*","/"];
+    return ops.some(e => string.includes(e))
+}
+
 //Calculate and display result
 
 function calculateResult(string) {
@@ -86,7 +93,6 @@ function calculateResult(string) {
     result = operate(operator,num1,num2);
     allClear();
     if(!result) {
-        alert("Something went wrong!");
         equation.textContent = calcStr;
     } else {
     calcStr += result;
@@ -104,7 +110,14 @@ window.addEventListener("click", (e) => {
         continueNumber(e.target.textContent);
     } else if (e.target.classList.contains("operators")) {
         checkFloatFormat(calcStr);
+        if (calcStr.includes(" ")) {
+            calculateResult(calcStr);
+        }
+        if (isEmpty(calcStr)) {
+            alert("Enter operand before operator!")
+        } else {
         addOperator(e.target.textContent);
+        }
     } else if (e.target.classList.contains("float")) {
         addFloat(e.target.textContent);
     } else if (e.target.classList.contains("ac")) {
