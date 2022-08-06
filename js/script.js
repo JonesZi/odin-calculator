@@ -13,6 +13,10 @@ function multiply (num1, num2) {
 }
 
 function divide (num1, num2) {
+    if (num2 === 0) {
+        alert("cannot divide by 0!");
+        return 0;
+    }
     return num1 / num2;
 }
 
@@ -79,10 +83,16 @@ function calculateResult(string) {
     const operator = array[1];
     const num1 = parseFloat(array[0]);
     const num2 = parseFloat(array[2]);
+    console.log(num1,num2,operator);
     result = operate(operator,num1,num2);
     allClear();
+    if(!result) {
+        alert("Something went wrong!");
+        equation.textContent = calcStr;
+    } else {
     calcStr += result;
-    equation.textContent = calcStr; 
+    equation.textContent = calcStr;
+    }   
 }
 
 // Variables & EventListeners
