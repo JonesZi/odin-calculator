@@ -115,9 +115,8 @@ window.addEventListener("click", (e) => {
         }
         if (isEmpty(calcStr)) {
             return;
-        } else {
-        addOperator(e.target.textContent);
         }
+        addOperator(e.target.textContent);
     } else if (e.target.classList.contains("float")) {
         addFloat(e.target.textContent);
     } else if (e.target.classList.contains("ac")) {
@@ -125,7 +124,6 @@ window.addEventListener("click", (e) => {
     } else if (e.target.classList.contains("c")) {
         clear(calcStr);
     } else if (e.target.classList.contains("equal")) {
-        checkFloatFormat(calcStr);
         calculateResult(calcStr);
     }
 });
